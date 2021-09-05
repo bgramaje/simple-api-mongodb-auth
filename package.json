@@ -23,7 +23,6 @@
     "express-winston": "^4.2.0",
     "helmet": "^4.6.0",
     "jest": "^27.1.0",
-    "mocha-junit-reporter": "^2.0.0",
     "mongodb": "^4.1.1",
     "mongoose": "^6.0.4",
     "morgan": "^1.10.0",
