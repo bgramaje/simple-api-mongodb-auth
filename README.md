@@ -1,9 +1,7 @@
-## 🚀 Node.js Express API Template
+## 🚀 Express.js API Template
 > Basic template to get your project started from scratch!
 
-
-👨🏻‍💻 Hey coder! In this repository you will find a basic schema structure to start your own REST API. 👨🏻‍💻
-This schema is made by some best practices I encountered and think they are pretty usefull to make your code nicer and organized.
+👨🏻‍💻 Hey coder! This is an Express.js template based in typescript and mongodb.
 
 ### Built with 🛠️
 
