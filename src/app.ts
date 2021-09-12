@@ -5,14 +5,14 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 
-import winston from 'winston';
-import { logger } from 'express-winston';
-
 import {
-    HOME
+    HOME,
+    USERS,
+    AUTH
 } from './config/routes'
 
-import { sampleRouter } from './api/routes/sample.routes';
+import { userRouter } from './api/routes/user.routes';
+import { authRouter } from './api/routes/auth.routes';
 
 import {
     notFound,
@@ -20,8 +20,6 @@ import {
 } from './api/middlewares/error.middlewares';
 
 import morganMiddleware from './api/middlewares/morgan.middleware';
-
-import Logger from "./config/utils/logger.utils"
 
 const app = express();
 
@@ -40,7 +38,8 @@ app.get(HOME, (req: Request, res: Response) => {
     });
 })
 
-app.use("/sample", sampleRouter);
+app.use(USERS, userRouter);
+app.use(AUTH, authRouter);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -50,7 +50,7 @@ export default abstract class Controller<T extends Document> {
      * @param next NextFunction
      */
     async add(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
+        try {      
             const newEntity = req.body as typeof Model;
             const result = await this.service.add(newEntity)
             result ? res.status(201).send(result) : res.status(500).send("Could not create entity");

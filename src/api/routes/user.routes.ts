@@ -1,64 +1,66 @@
 import express, { Response, Request, NextFunction } from "express";
 import asyncHandler from 'express-async-handler'
 
-import { sampleController } from "../controllers/sample.controllers";
+import { userController } from "../controllers/user.controllers";
+
+import authToken from "../middlewares/auth.middlewares";
 
 const router = express.Router();
-const controller = new sampleController();
+const controller = new userController();
 
 /**
- * @description /, retrives all 'sample' model from DDBB
+ * @description /, retrives all 'user' model from DDBB
  * @param {*} rute
  * @param {function(req: Request, res: Response, next: NextFunction)}
  */
-router.get('/list', asyncHandler(
+router.get('/list', [authToken], asyncHandler(
     async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         controller.get(req, res, next)
     })
 );
 
 /**
- * @description /, retrives a 'sample' model from DDBB by it's Id
+ * @description /, retrives a 'user' model from DDBB by it's Id
  * @param {*} rute
  * @param {function(req: Request, res: Response, next: NextFunction)}
  */
-router.get('/list/:id', asyncHandler(
+router.get('/list/:id', [authToken], asyncHandler(
     async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         controller.getById(req, res, next);
     })
 );
 
 /**
- * @description /,create a new 'sample' model, and saves it in DDBB
+ * @description /,create a new 'user' model, and saves it in DDBB
  * @param {*} rute
  * @param {function(req: Request, res: Response, next: NextFunction)}
  */
-router.post('/create', asyncHandler(
+router.post('/create', [authToken], asyncHandler(
     async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         controller.add(req, res, next)
     })
 );
 
 /**
- * @description /, deletes a 'sample' model from DDBB by it's Id.
+ * @description /, deletes a 'user' model from DDBB by it's Id.
  * @param {*} rute
  * @param {function(req: Request, res: Response, next: NextFunction)}
  */
-router.delete('/delete/:id', asyncHandler(
+router.delete('/delete/:id', [authToken], asyncHandler(
     async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         controller.delete(req, res, next);
     })
 );
 
 /**
- * @description /, updates a 'sample' model from DDBB by it's Id
+ * @description /, updates a 'user' model from DDBB by it's Id
  * @param {*} rute
  * @param {function(req: Request, res: Response, next: NextFunction)}
  */
-router.put('/update/:id', asyncHandler(
+router.put('/update/:id', [authToken], asyncHandler(
     async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         controller.update(req, res, next)
     })
 );
 
-export { router as sampleRouter };
+export { router as userRouter };
